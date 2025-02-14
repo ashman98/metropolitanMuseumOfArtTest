@@ -13,7 +13,7 @@
                     }} </span>
                 <p class="text-sm font-medium text-gray-700 ">{{ product.artistDisplayBio }}</p>
             </div>
-            <a :href="ensureValidUrl.product.objectWikidata_URL" class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{
+            <a :href="ensureValidUrl(product.objectWikidata_URL)" class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{
                     product.title
                 }}</a>
 
@@ -24,15 +24,6 @@
                     }}</p>
                 <p></p>
             </div>
-            <ul class="mt-2 flex items-center">
-                <li v-for="tag in product.tags" :key="feature" class="flex items-center gap-1">
-                    <a href="{{tag.Wikidata_URL}}"> <span
-                        class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300">#{{
-                            tag.term
-                        }}</span></a>
-
-                </li>
-            </ul>
         </div>
     </div>
 </template>
