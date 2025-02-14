@@ -16,15 +16,6 @@ class MetMuseumController extends Controller
     {
     }
 
-    public function index()
-    {
-        $departments = Department::all();
-
-        return Inertia::render('Welcome', [
-            'departments' => $departments,
-        ]);
-    }
-
     /**
      * @param ArtworksSearchRequest $request
      * @return \Inertia\Response
@@ -45,8 +36,16 @@ class MetMuseumController extends Controller
         $getArtworksExternal = new GetArtWorksExternalService('objects');
         $art_works = $getArtworksExternal->setArtWorksIds($art_works_ids)->getArtWorks();
 
-        return Inertia::render('Departments/SearchResults', [
+        return Inertia::render('SearchResults', [
             'art_works' => $art_works,
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getDepartments(): array
+    {
+        return Department::all()->toArray() ?? [];
     }
 }
