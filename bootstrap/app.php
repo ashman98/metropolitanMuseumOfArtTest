@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtworks;
+use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtWorksService;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->withBindings([
-        App\Interfaces\ExternalDataApi\SearchExternalArtworksInterface::class => SearchExternalArtworks::class,
+        App\Interfaces\ExternalDataApi\SearchExternalArtworksInterface::class => SearchExternalArtWorksService::class,
     ])
 
     ->create();

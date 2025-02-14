@@ -2,11 +2,18 @@
 
 namespace App\Interfaces\ExternalDataApi;
 
-use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtworks;
+use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtWorksService;
 
 interface SearchExternalArtworksInterface
 {
-    public function search();
+    /**
+     * @return array
+     */
+    public function search(): array;
 
-    public function setParams(array $params): SearchExternalArtworks;
+    /**
+     * @param array $params
+     * @return SearchExternalArtWorksService
+     */
+    public function setParams(array $params): SearchExternalArtWorksService;
 }

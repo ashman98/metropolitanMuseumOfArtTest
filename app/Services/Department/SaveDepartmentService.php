@@ -12,16 +12,6 @@ class SaveDepartmentService implements SaveDepartmentInterface
     {
     }
 
-    public function saveDepartments(): void
-    {
-        foreach ($this->departments as $department) {
-            Department::updateOrCreate(
-                ['external_id' => $department['departmentId']],
-                ['name' => $department['displayName'], 'external_id' => $department['departmentId']]
-            );
-        }
-    }
-
     /**
      * @param array $departments
      * @return SaveDepartmentService
@@ -30,5 +20,18 @@ class SaveDepartmentService implements SaveDepartmentInterface
     {
         $this->departments = $departments;
         return $this;
+    }
+
+    /**
+     * @return void
+     */
+    public function saveDepartments(): void
+    {
+        foreach ($this->departments as $department) {
+            Department::updateOrCreate(
+                ['external_id' => $department['departmentId']],
+                ['name' => $department['displayName'], 'external_id' => $department['departmentId']]
+            );
+        }
     }
 }

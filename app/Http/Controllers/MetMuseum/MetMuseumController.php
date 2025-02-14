@@ -4,11 +4,9 @@ namespace App\Http\Controllers\MetMuseum;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MetMuseum\ArtworksSearchRequest;
-use App\Interfaces\ExternalDataApi\SearchExternalArtworksInterface;
-use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\GetArtworksExternal;
-use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtworks;
+use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\GetArtWorksExternalService;
+use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\SearchExternalArtWorksService;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 
 
 class MetMuseumController extends Controller
@@ -27,19 +25,18 @@ class MetMuseumController extends Controller
         $department_id = $request->input('department_id');
         $query = $request->input('query');
 
-        $searchExternalArtworksService = new SearchExternalArtworks('search');
-        $object_ids = $searchExternalArtworksService->setParams([
+        $searchExternalArtworksService = new SearchExternalArtWorksService('search');
+        $art_works_ids = $searchExternalArtworksService->setParams([
             'departmentId' => $department_id,
             'title' => $title,
             'q' => $query
         ])->search();
 
-        $getArtworksExternal = new GetArtworksExternal('objects');
-        $art_works = $getArtworksExternal->setObjectIds($object_ids)->getSearchResultObjects();
+        $getArtworksExternal = new GetArtWorksExternalService('objects');
+        $art_works = $getArtworksExternal->setArtWorksIds($art_works_ids)->getArtWorks();
 
         return Inertia::render('Departments/SearchResults', [
             'art_works' => $art_works,
-//            'query' => $query
         ]);
     }
 }

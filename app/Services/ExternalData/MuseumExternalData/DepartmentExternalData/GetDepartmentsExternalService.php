@@ -2,12 +2,11 @@
 
 namespace App\Services\ExternalData\MuseumExternalData\DepartmentExternalData;
 
-use App\Http\Resources\DepartmentResource;
 use App\Interfaces\ExternalDataApi\GetDepartmentExternalInterface;
 use App\Services\ExternalData\MuseumExternalData\MetMuseumApiService;
 use Illuminate\Support\Facades\Http;
 
-class GetDepartmentsExternal extends MetMuseumApiService implements GetDepartmentExternalInterface
+class GetDepartmentsExternalService extends MetMuseumApiService implements GetDepartmentExternalInterface
 {
     public function __construct(string $apiRoute)
     {

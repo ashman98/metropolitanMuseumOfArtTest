@@ -6,7 +6,7 @@ use App\Services\ExternalData\MuseumExternalData\MetMuseumApiService;
 use Illuminate\Support\Facades\Http;
 use App\Interfaces\ExternalDataApi\SearchExternalArtworksInterface;
 
-class SearchExternalArtworks extends MetMuseumApiService implements SearchExternalArtworksInterface
+class SearchExternalArtWorksService extends MetMuseumApiService implements SearchExternalArtworksInterface
 {
     private array $params = [];
 
@@ -15,7 +15,21 @@ class SearchExternalArtworks extends MetMuseumApiService implements SearchExtern
         parent::__construct($apiRoute);
     }
 
-    public function search()
+    /**
+     * @param array $params
+     * @return $this
+     */
+    public function setParams(array $params): SearchExternalArtWorksService
+    {
+        $this->params = $params;
+        return $this;
+    }
+
+    /**
+     * @return array
+     * @throws \Illuminate\Http\Client\ConnectionException
+     */
+    public function search(): array
     {
         $response = Http::withHeaders([
             'Accept' => 'application/json',
@@ -27,11 +41,5 @@ class SearchExternalArtworks extends MetMuseumApiService implements SearchExtern
         }
 
         return collect($response->json()['objectIDs'])->take(10)->toArray();
-    }
-
-    public function setParams(array $params): SearchExternalArtworks
-    {
-        $this->params = $params;
-        return $this;
     }
 }

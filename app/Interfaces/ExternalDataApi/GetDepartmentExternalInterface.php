@@ -4,5 +4,8 @@ namespace App\Interfaces\ExternalDataApi;
 
 interface GetDepartmentExternalInterface
 {
-    public function getDepartmentsExternalData();
+    /**
+     * @return mixed
+     */
+    public function getDepartmentsExternalData(): mixed;
 }

@@ -2,11 +2,19 @@
 
 namespace App\Interfaces\ExternalDataApi;
 
-use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\GetArtworksExternal;
+use App\Services\ExternalData\MuseumExternalData\ArtworksExternalData\GetArtWorksExternalService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 interface GetExternalArtworksInterface
 {
-    public function getSearchResultObjects();
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getArtWorks(): \Illuminate\Support\Collection;
 
-    public function setObjectIds(array $object_ids): GetArtworksExternal;
+    /**
+     * @param array $art_works_ids
+     * @return GetArtWorksExternalService
+     */
+    public function setArtWorksIds(array $art_works_ids): GetArtWorksExternalService;
 }

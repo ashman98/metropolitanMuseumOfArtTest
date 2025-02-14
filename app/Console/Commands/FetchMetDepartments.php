@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\GetDepartmentsExternalData;
 use App\Services\Department\SaveDepartmentService;
-use App\Services\ExternalData\MuseumExternalData\DepartmentExternalData\GetDepartmentsExternal;
+use App\Services\ExternalData\MuseumExternalData\DepartmentExternalData\GetDepartmentsExternalService;
 use Illuminate\Console\Command;
 
 class FetchMetDepartments extends Command
@@ -29,7 +29,7 @@ class FetchMetDepartments extends Command
     public function handle()
     {
         dispatch(new GetDepartmentsExternalData(
-            new GetDepartmentsExternal('departments'),
+            new GetDepartmentsExternalService('departments'),
             new SaveDepartmentService())
         );
     }
