@@ -2,7 +2,6 @@
     <nav class="py-5 border-b-default bg-gray-900 border-solid border-gray-200 z-10 w-full" id="topnav">
         <div class="mx-auto max-w-7xl lg:px-8">
             <form @submit.prevent="handleSubmit" class="w-full flex flex-col lg:flex-row">
-                <!-- Logo and Toggle Button (for mobile) -->
                 <div class="flex justify-between lg:hidden px-4">
                     <a href="/" class="flex items-center">
                         <span class="text-2xl font-bold text-gray-200">Museum</span>
@@ -15,14 +14,11 @@
                     </button>
                 </div>
 
-                <!-- Navbar Content -->
                 <div :class="['hidden w-full lg:flex justify-between max-lg:bg-white py-5 max-lg:mt-1 max-lg:px-4 max-lg:shadow-lg max-lg:shadow-gray-200 max-lg:h-auto max-lg:overflow-auto transition-all duration-500 delay-200', { 'hidden': !isNavbarOpen }]" id="navbar">
-                    <!-- Logo (for desktop) -->
                     <a href="/" class="hidden lg:flex items-center">
                         <span class="text-2xl font-bold text-gray-200">Museum</span>
                     </a>
 
-                    <!-- Search Bar -->
                     <div class="flex items-center gap-5 lg:justify-center max-lg:mt-4">
                         <div class="relative w-full">
                             <input
@@ -55,18 +51,18 @@ import axios from "axios";
 export default {
     data() {
         return {
-            result: [], // Список стран
+            result: [],
             isNavbarOpen: false,
             title: "1",
-            query: "", // Данные из input
-            department_id: "", // Данные из select
+            query: "",
+            department_id: "",
         };
     },
     mounted() {
         axios
             .get("/getDepartments")
             .then((response) => {
-                this.result = response.data; // Загружаем список стран
+                this.result = response.data;
             })
             .catch((error) => {
                 console.error(error);
@@ -86,7 +82,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-/* Add custom styles if needed */
-</style>

@@ -41,7 +41,7 @@
 export default {
     methods: {
         ensureValidUrl(url) {
-            if (!url) return '#'; // Если URL пустой, делаем заглушку
+            if (!url) return '#';
             return url.startsWith('http') ? url : `https://${url}`;
         },
     },

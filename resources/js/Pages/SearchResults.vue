@@ -1,7 +1,6 @@
 <script setup>
 import {defineProps, onMounted} from 'vue';
 import Layout from "@/Layouts/Layout.vue";
-import ProductCard from "@/Components/ProductCard.vue";
 import ProductGrid from "@/Components/ProductGrid.vue";
 
 const props = defineProps({
